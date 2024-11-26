@@ -1,0 +1,1192 @@
+[
+    {
+        "id": "1a6535871d7330e1",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2c9ea6b2d3dd6948",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1135d98b21268f3e",
+        "type": "tab",
+        "label": "Usuários",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c5c72c685c34ec7d",
+        "type": "tab",
+        "label": "Filiais",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d952e254adfa0eea",
+        "type": "tab",
+        "label": "Alunos",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "578bfd59677fba36",
+        "type": "tab",
+        "label": "Funcionários",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "422b738f880dc626",
+        "type": "group",
+        "z": "2c9ea6b2d3dd6948",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "2312f4d9c9249ad7",
+            "45a51c77812a0a2e",
+            "a8df25243a6ecdb6",
+            "7f67b7610b1ec47f"
+        ],
+        "x": 108,
+        "y": 173,
+        "w": 764,
+        "h": 814
+    },
+    {
+        "id": "2312f4d9c9249ad7",
+        "type": "group",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "422b738f880dc626",
+        "name": "CADASTRO DE PESSOAS",
+        "style": {
+            "stroke": "#92d04f",
+            "label": true
+        },
+        "nodes": [
+            "15890e4936bcf174",
+            "bd615d669d360fe1",
+            "0616bd02e12797bc",
+            "fe87c9138d87b36e",
+            "c7b2abeacc981d95"
+        ],
+        "x": 134,
+        "y": 199,
+        "w": 712,
+        "h": 162
+    },
+    {
+        "id": "45a51c77812a0a2e",
+        "type": "group",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "422b738f880dc626",
+        "name": "LISTAGEM DE PESSOAS",
+        "style": {
+            "stroke": "#9363b7",
+            "label": true
+        },
+        "nodes": [
+            "7043e77a5d10d224",
+            "b58dae4f8ab17ce7",
+            "f8eefa8f3bbe4e24",
+            "528bfe26e2851429",
+            "9780551276ec08ea"
+        ],
+        "x": 134,
+        "y": 379,
+        "w": 692,
+        "h": 162
+    },
+    {
+        "id": "a8df25243a6ecdb6",
+        "type": "group",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "422b738f880dc626",
+        "name": "EDIÇÃO DE PESSOAS",
+        "style": {
+            "label": true,
+            "stroke": "#ffC000"
+        },
+        "nodes": [
+            "7c208ffbb43558e2",
+            "98dd2764f46e5082",
+            "5f2f13e3eb658adb",
+            "7b7a09f18cfac80d",
+            "8fba8db778b82b32"
+        ],
+        "x": 134,
+        "y": 559,
+        "w": 672,
+        "h": 182
+    },
+    {
+        "id": "7f67b7610b1ec47f",
+        "type": "group",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "422b738f880dc626",
+        "name": "DELETAR PESSOAS",
+        "style": {
+            "stroke": "#ff0000",
+            "label": true
+        },
+        "nodes": [
+            "a501e70aafd194b0",
+            "16ca60feb44c8506",
+            "e2f91ec2ef2ab0dc",
+            "7a93931ec5566214",
+            "1299030ce3cc2039"
+        ],
+        "x": 134,
+        "y": 759,
+        "w": 672,
+        "h": 202
+    },
+    {
+        "id": "15890e4936bcf174",
+        "type": "function",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "2312f4d9c9249ad7",
+        "name": "function 16",
+        "func": "const pessoa = msg.payload\nconst listaPessoasAtualizada = global.get('listaPessoas')\n\nif (!pessoa.nome) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UM NOME'\n    msg.statusCode = 400\n    return msg\n}\n\nif (!pessoa.rg) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UM RG'\n    msg.statusCode = 400\n    return msg\n}\n\nif (!pessoa.cpf) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UM CPF'\n    msg.statusCode = 400\n    return msg\n}\n\nif (!pessoa.idade) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UMA IDADE'\n    msg.statusCode = 400\n    return msg\n}\n\nif (!pessoa.altura) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UMA ALTURA'\n    msg.statusCode = 400\n    return msg\n}\n\nif (!pessoa.sexo) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UM SEXO'\n    msg.statusCode = 400\n    return msg\n}\n\nconst dataDeHoje = new Date()\n\nlistaPessoasAtualizada.push(pessoa)\n\nglobal.set('listaPessoas', listaPessoasAtualizada)\n\nmsg.payload = 'PESSOA CADASTRADA COM SUCESSO ' + dataDeHoje.toISOString()\n \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 240,
+        "wires": [
+            [
+                "bd615d669d360fe1",
+                "c7b2abeacc981d95"
+            ]
+        ]
+    },
+    {
+        "id": "bd615d669d360fe1",
+        "type": "debug",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "2312f4d9c9249ad7",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "0616bd02e12797bc",
+        "type": "inject",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "2312f4d9c9249ad7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{   \t\"nome\": \"eduardo\", \"rg\": \"teste\", \"idade\": 20,\t\"cpf\": \"teste\", \t\"altura\": 1.75, \t\"sexo\": \"M\" }",
+        "payloadType": "json",
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "15890e4936bcf174"
+            ]
+        ]
+    },
+    {
+        "id": "7043e77a5d10d224",
+        "type": "inject",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "45a51c77812a0a2e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 420,
+        "wires": [
+            [
+                "f8eefa8f3bbe4e24"
+            ]
+        ]
+    },
+    {
+        "id": "b58dae4f8ab17ce7",
+        "type": "debug",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "45a51c77812a0a2e",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f8eefa8f3bbe4e24",
+        "type": "function",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "45a51c77812a0a2e",
+        "name": "function 17",
+        "func": "\nmsg.payload = global.get('listaPessoas')\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 460,
+        "wires": [
+            [
+                "b58dae4f8ab17ce7",
+                "9780551276ec08ea"
+            ]
+        ]
+    },
+    {
+        "id": "7c208ffbb43558e2",
+        "type": "debug",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "a8df25243a6ecdb6",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "98dd2764f46e5082",
+        "type": "inject",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "a8df25243a6ecdb6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"nome\":\"Ana Barros\",\"rg\":\"12.345.678-9\",\"cpf\":\"123.456.789-00\",\"idade\":28,\"altura\":1.65,\"sexo\":\"Feminino\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 600,
+        "wires": [
+            [
+                "5f2f13e3eb658adb"
+            ]
+        ]
+    },
+    {
+        "id": "5f2f13e3eb658adb",
+        "type": "function",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "a8df25243a6ecdb6",
+        "name": "function 20",
+        "func": "const dadosEdicao = msg.payload\n \n//PRIMEIRO ELE VALIDA OS DADOS DE EDIÇÃO\nif (!dadosEdicao.nome) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UM NOME'\n    msg.statusCode = 400\n    return msg\n}\n\nif (!dadosEdicao.rg) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UM RG'\n    msg.statusCode = 400\n    return msg\n}\n\nif (!dadosEdicao.cpf) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UM CPF'\n    msg.statusCode = 400\n    return msg\n}\n\nif (!dadosEdicao.idade) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UMA IDADE'\n    msg.statusCode = 400\n    return msg\n}\n\nif (!dadosEdicao.altura) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UMA ALTURA'\n    msg.statusCode = 400\n    return msg\n}\n\nif (!dadosEdicao.sexo) {\n    msg.payload = 'ERRO: PESSOA DEVE TER UM SEXO'\n    msg.statusCode = 400\n    return msg\n}\n\n\nconst listaDePessoas = global.get('listaPessoas')\n\n//VERIFICA SE EXISTE UMA PESSOA QUE BATE O CPF COM OS DADOS DE EDIÇÃO ENVIADOS\nconst pessoaEncontradaPeloCpfInformado = listaDePessoas.find((pesquisado) => pesquisado.cpf === dadosEdicao.cpf)\n\nnode.warn('pessoa encontrada pelo cpf ' + dadosEdicao.cpf)\nnode.warn(pessoaEncontradaPeloCpfInformado);\n\nif (!pessoaEncontradaPeloCpfInformado) {\n    msg.statusCode = 404\n    msg.payload = 'Os dados de cpf não batem com os registros do sistema'\n    return msg\n}\n\n// ENCONTRA A POSIÇÃO DA PESSOA A SER EDITADA DENTRO DA LISTA\nconst posicaoNaListaDaPessoaASerEditada = listaDePessoas.indexOf(pessoaEncontradaPeloCpfInformado)\n\nnode.warn('POSICAO DA PESSOA ENCONTRADA ' + posicaoNaListaDaPessoaASerEditada)\n\n\n// SUBSTITUI OS DADOS DA PESSOA NA POSIÇÃO CONDIZENTE\nlistaDePessoas[posicaoNaListaDaPessoaASerEditada] = dadosEdicao\n\n// ATUALIZA O VALOR GLOBAL DA LISTA DE PESSOAS COM A LISTAGEM ATUALIZADA\nglobal.set('listaDePessoas', listaDePessoas)\n\nconst dataDeHoje = new Date()\nmsg.payload = 'PESSOA EDITADA COM SUCESSO ' + dataDeHoje.toISOString()\n \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 640,
+        "wires": [
+            [
+                "7c208ffbb43558e2",
+                "8fba8db778b82b32"
+            ]
+        ]
+    },
+    {
+        "id": "a501e70aafd194b0",
+        "type": "inject",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "7f67b7610b1ec47f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "987.654.321-11",
+        "payloadType": "str",
+        "x": 260,
+        "y": 800,
+        "wires": [
+            [
+                "16ca60feb44c8506"
+            ]
+        ]
+    },
+    {
+        "id": "16ca60feb44c8506",
+        "type": "function",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "7f67b7610b1ec47f",
+        "name": "function 19",
+        "func": "node.warn(msg)\nconst cpfDaPessoaSerRemovida = msg.req.params.cpf\n\nconst listaPessoas = global.get('listaPessoas')\nconst listaPessoasComAPessoaRemovida = listaPessoas.filter((pessoa) => pessoa.cpf !== cpfDaPessoaSerRemovida)\nglobal.set('listaPessoas', listaPessoasComAPessoaRemovida)\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 840,
+        "wires": [
+            [
+                "e2f91ec2ef2ab0dc",
+                "1299030ce3cc2039"
+            ]
+        ]
+    },
+    {
+        "id": "e2f91ec2ef2ab0dc",
+        "type": "debug",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "7f67b7610b1ec47f",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "0b7086d0a2d2ef1c",
+        "type": "function",
+        "z": "2c9ea6b2d3dd6948",
+        "name": "function 21",
+        "func": "global.set('listaPessoas', [\n  {\n    \"nome\": \"Ana Silva\",\n    \"rg\": \"12.345.678-9\",\n    \"cpf\": \"123.456.789-00\",\n    \"idade\": 28,\n    \"altura\": 1.65,\n    \"sexo\": \"Feminino\"\n  },\n  {\n    \"nome\": \"Bruno Costa\",\n    \"rg\": \"98.765.432-1\",\n    \"cpf\": \"987.654.321-11\",\n    \"idade\": 35,\n    \"altura\": 1.78,\n    \"sexo\": \"Masculino\"\n  },\n  {\n    \"nome\": \"Carla Oliveira\",\n    \"rg\": \"23.456.789-0\",\n    \"cpf\": \"234.567.890-22\",\n    \"idade\": 22,\n    \"altura\": 1.60,\n    \"sexo\": \"Feminino\"\n  },\n  {\n    \"nome\": \"Diego Pereira\",\n    \"rg\": \"87.654.321-2\",\n    \"cpf\": \"876.543.210-33\",\n    \"idade\": 42,\n    \"altura\": 1.80,\n    \"sexo\": \"Masculino\"\n  },\n  {\n    \"nome\": \"Eduarda Souza\",\n    \"rg\": \"34.567.890-1\",\n    \"cpf\": \"345.678.901-44\",\n    \"idade\": 29,\n    \"altura\": 1.70,\n    \"sexo\": \"Feminino\"\n  },\n  {\n    \"nome\": \"Fernando Almeida\",\n    \"rg\": \"76.543.210-3\",\n    \"cpf\": \"765.432.109-55\",\n    \"idade\": 31,\n    \"altura\": 1.75,\n    \"sexo\": \"Masculino\"\n  },\n  {\n    \"nome\": \"Gabriela Lima\",\n    \"rg\": \"45.678.901-2\",\n    \"cpf\": \"456.789.012-66\",\n    \"idade\": 27,\n    \"altura\": 1.68,\n    \"sexo\": \"Feminino\"\n  },\n  {\n    \"nome\": \"Henrique Santos\",\n    \"rg\": \"65.432.109-4\",\n    \"cpf\": \"654.321.098-77\",\n    \"idade\": 36,\n    \"altura\": 1.82,\n    \"sexo\": \"Masculino\"\n  },\n  {\n    \"nome\": \"Isabela Martins\",\n    \"rg\": \"56.789.012-3\",\n    \"cpf\": \"567.890.123-88\",\n    \"idade\": 24,\n    \"altura\": 1.62,\n    \"sexo\": \"Feminino\"\n  },\n  {\n    \"nome\": \"João Mendes\",\n    \"rg\": \"43.210.987-5\",\n    \"cpf\": \"432.109.876-99\",\n    \"idade\": 40,\n    \"altura\": 1.83,\n    \"sexo\": \"Masculino\"\n  }\n]\n)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "495dc71e26f2fbbc",
+        "type": "inject",
+        "z": "2c9ea6b2d3dd6948",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 120,
+        "wires": [
+            [
+                "0b7086d0a2d2ef1c"
+            ]
+        ]
+    },
+    {
+        "id": "fe87c9138d87b36e",
+        "type": "http in",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "2312f4d9c9249ad7",
+        "name": "",
+        "url": "/criar-pessoas",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "15890e4936bcf174"
+            ]
+        ]
+    },
+    {
+        "id": "c7b2abeacc981d95",
+        "type": "http response",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "2312f4d9c9249ad7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "528bfe26e2851429",
+        "type": "http in",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "45a51c77812a0a2e",
+        "name": "",
+        "url": "/listar-pessoas",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 500,
+        "wires": [
+            [
+                "f8eefa8f3bbe4e24"
+            ]
+        ]
+    },
+    {
+        "id": "9780551276ec08ea",
+        "type": "http response",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "45a51c77812a0a2e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "7b7a09f18cfac80d",
+        "type": "http in",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "a8df25243a6ecdb6",
+        "name": "",
+        "url": "/editar-pessoa",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 680,
+        "wires": [
+            [
+                "5f2f13e3eb658adb"
+            ]
+        ]
+    },
+    {
+        "id": "8fba8db778b82b32",
+        "type": "http response",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "a8df25243a6ecdb6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "7a93931ec5566214",
+        "type": "http in",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "7f67b7610b1ec47f",
+        "name": "",
+        "url": "/excluir-pessoa/:cpf",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 860,
+        "wires": [
+            [
+                "16ca60feb44c8506"
+            ]
+        ]
+    },
+    {
+        "id": "1299030ce3cc2039",
+        "type": "http response",
+        "z": "2c9ea6b2d3dd6948",
+        "g": "7f67b7610b1ec47f",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "f233cbde2abf5792",
+        "type": "function",
+        "z": "1135d98b21268f3e",
+        "name": "realizar login",
+        "func": "// @ts-ignore\nconst require = global.get('require')\nconst axios = require('axios')\nconst solicitacao = msg.payload\nconst url = 'http://localhost:8911/graphql'\n\n/*\n{\n    \"acesso\": \"maria.souza@email.com\",\n    \"psswd\": \"senha456\"\n}*/\nconst queryDeLogin = {\n    \"query\": \"query realizarLogin($acesso: String!, $psswd: String!) {\\n  login(acesso: $acesso, psswd: $psswd) {\\n    id\\n    nome\\n    email\\n  }\\n}\",\n    \"variables\": solicitacao,\n    \"operationName\": \"realizarLogin\",\n    \"extensions\": {}\n}\n\ntry {\n    const resposta = await axios.post(url, queryDeLogin)\n    const statusLogin = resposta.data.data.login\n    node.warn('LOGIN ' + statusLogin)\n\n    if (statusLogin) {\n        msg.payload =  statusLogin\n    } else {\n        msg.payload = 'false'\n        msg.statusCode = 401\n    }\n} catch (e) {\n    node.warn('ERRO AO REALIZAR LOGIN')\n    node.warn(e)\n    msg.statusCode = 500\n    msg.payload = 'ERRO AO TENTAR ACESSAR SERVIÇO DE LOGIN'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 140,
+        "wires": [
+            [
+                "3f101157d8d5971e",
+                "e308b9f57a2f552b"
+            ]
+        ]
+    },
+    {
+        "id": "5548cfe06ad7dee6",
+        "type": "http in",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "url": "api/usuarios/login",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "f233cbde2abf5792"
+            ]
+        ]
+    },
+    {
+        "id": "3f101157d8d5971e",
+        "type": "http response",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "5dfc59b1e3ca6bbf",
+        "type": "function",
+        "z": "1135d98b21268f3e",
+        "name": "realizar inscrição",
+        "func": "// @ts-ignore\nconst require = global.get('require')\nconst axios = require('axios')\nconst solicitacao = msg.payload\nconst url = 'http://localhost:8911/graphql'\n \nconst queryDeInscricao = {\n    \"query\": \"mutation criarUsuario($input: CreateUsuariosInput!) {\\n  createUsuarios(input: $input) {\\n    id\\n  }\\n}\",\n    \"variables\": {\n        \"input\": solicitacao\n    },\n    \"operationName\": \"criarUsuario\",\n    \"extensions\": {}\n}\n\ntry {\n    const resposta = await axios.post(url, queryDeInscricao)\n    node.warn(resposta)\n    const id = resposta.data.data.createUsuarios?.id\n    \n\n    if (id) {\n        msg.payload = 'true'\n    } else {\n        msg.payload = 'false'\n        msg.statusCode = 400\n    }\n} catch (e) {\n    node.warn('ERRO AO REALIZAR INSCRIÇÃO')\n    node.warn(e)\n    msg.statusCode = 500\n    msg.payload = 'ERRO AO TENTAR ACESSAR SERVIÇO DE LOGIN'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 220,
+        "wires": [
+            [
+                "6d5d50b9db13a79d"
+            ]
+        ]
+    },
+    {
+        "id": "bdc834e86214e32d",
+        "type": "http in",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "url": "api/usuarios/inscricao",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "5dfc59b1e3ca6bbf"
+            ]
+        ]
+    },
+    {
+        "id": "6d5d50b9db13a79d",
+        "type": "http response",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "6f8831c85a1b89b0",
+        "type": "function",
+        "z": "1135d98b21268f3e",
+        "name": "realizar esqueceu senha",
+        "func": "// @ts-ignore\nconst require = global.get('require')\nconst axios = require('axios')\nconst solicitacao = msg.payload\nconst url = 'http://localhost:8911/graphql'\n \nconst queryDeEsqueceuSenha = {\n    \"query\": \"mutation esqueceuSenha($solicitacao: JSON!) {\\n  esqueceuSuaSenha(solicitacao: $solicitacao)\\n}\",\n    \"variables\": {\n        \"solicitacao\": solicitacao\n    },\n    \"operationName\": \"esqueceuSenha\",\n    \"extensions\": {}\n}\n\ntry {\n    const respostaDoServidor = await axios.post(url, queryDeEsqueceuSenha)\n    \n    const mensagemResposta = respostaDoServidor.data.data.esqueceuSuaSenha\n    \n\n    if (mensagemResposta === 'TROCA FEITA COM SUCESSO!') {\n        msg.payload = 'true'\n    } else {\n        msg.payload = mensagemResposta\n        msg.statusCode = 400\n    }\n} catch (e) {\n    node.warn('ERRO AO REALIZAR TROCA')\n    node.warn(e)\n    msg.statusCode = 500\n    msg.payload = 'ERRO AO TENTAR ACESSAR TROCA DE SENHA'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "943d50317f76ed2d"
+            ]
+        ]
+    },
+    {
+        "id": "45eef5b3793d7ca0",
+        "type": "http in",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "url": "api/usuarios/esqueceusenha",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "6f8831c85a1b89b0"
+            ]
+        ]
+    },
+    {
+        "id": "943d50317f76ed2d",
+        "type": "http response",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "af56298f99a491be",
+        "type": "function",
+        "z": "1135d98b21268f3e",
+        "name": "retorna ultimos acessos ao sistema",
+        "func": "// @ts-ignore\nconst require = global.get('require')\nconst axios = require('axios') \nconst url = 'http://localhost:8911/graphql'\n \nconst queryDeUltimosAcessos = {\n    \"query\": \"query ultimosAcessos {\\n  ultimosAcessos {\\n    nome\\n    ultimoAcesso\\n  }\\n}\",\n    \"operationName\": \"ultimosAcessos\",\n    \"extensions\": {}\n}\n\ntry {\n    const respostaDoServidor = await axios.post(url, queryDeUltimosAcessos)\n    \n    const conteudoDaResposta = respostaDoServidor.data.data.ultimosAcessos\n    \n    msg.payload = conteudoDaResposta\n\n} catch (e) {\n    node.warn('ERRO AO CONSULTAR ULTIMOS ACESSOS')\n    node.warn(e)\n    msg.statusCode = 500\n    msg.payload = 'ERRO AO TENTAR ACESSAR ULTIMOS ACESSOS'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 400,
+        "wires": [
+            [
+                "e00aaf066df44b8b"
+            ]
+        ]
+    },
+    {
+        "id": "06127f0c6297c335",
+        "type": "http in",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "url": "api/usuarios/ultimos-acessos",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 400,
+        "wires": [
+            [
+                "af56298f99a491be"
+            ]
+        ]
+    },
+    {
+        "id": "e00aaf066df44b8b",
+        "type": "http response",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "e308b9f57a2f552b",
+        "type": "debug",
+        "z": "1135d98b21268f3e",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "7c2c433cb0cb6b5a",
+        "type": "function",
+        "z": "1135d98b21268f3e",
+        "name": "buscar listagem",
+        "func": "// @ts-ignore\nconst require = global.get('require')\nconst axios = require('axios')\nconst solicitacao = msg.payload\nconst url = 'http://localhost:8911/graphql'\n \nconst queryDeListagem = {\n    \"query\": \"query usuarios {\\n  usuarioses {\\n    id\\n    nome\\n    email\\n  }\\n}\",\n    \"operationName\": \"usuarios\",\n    \"extensions\": {}\n}\n\ntry {\n    const resposta = await axios.post(url, queryDeListagem)\n    node.warn(resposta);\n    const listagem = resposta.data.data.usuarioses\n    msg.payload = listagem\n} catch (e) {\n    node.warn('ERRO AO REALIZAR LISTAGEM DE USUÁRIOS')\n    node.warn(e)\n    msg.statusCode = 500\n    msg.payload = 'ERRO AO TENTAR ACESSAR LISTAGEM DE USUÁRIOS'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 500,
+        "wires": [
+            [
+                "f9419e1456277b7d",
+                "87f19d3013e7f4fa"
+            ]
+        ]
+    },
+    {
+        "id": "b88f6ee3d96b601f",
+        "type": "http in",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "url": "api/usuarios/listagem",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 500,
+        "wires": [
+            [
+                "7c2c433cb0cb6b5a"
+            ]
+        ]
+    },
+    {
+        "id": "f9419e1456277b7d",
+        "type": "http response",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "87f19d3013e7f4fa",
+        "type": "debug",
+        "z": "1135d98b21268f3e",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "4207d5b2da709f73",
+        "type": "inject",
+        "z": "1135d98b21268f3e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 560,
+        "wires": [
+            [
+                "7c2c433cb0cb6b5a"
+            ]
+        ]
+    },
+    {
+        "id": "6d2663f39ffdbfbc",
+        "type": "http in",
+        "z": "c5c72c685c34ec7d",
+        "name": "",
+        "url": "/filiais/listagem-mapa",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "60ac211b1b84fcd1"
+            ]
+        ]
+    },
+    {
+        "id": "93428520cccf0982",
+        "type": "http response",
+        "z": "c5c72c685c34ec7d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 810,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "60ac211b1b84fcd1",
+        "type": "function",
+        "z": "c5c72c685c34ec7d",
+        "name": "retorna filiais pro mapa da dashboard",
+        "func": "// @ts-ignore\nconst require = global.get('require')\nconst axios = require('axios') \nconst url = 'http://localhost:8911/graphql'\n \nconst queryDeConsultaDeFiliais = {\n    \"query\": \"query consultaDeFiliais {\\n  filiaises {\\n    nome\\n    latlong\\n  }\\n}\",\n    \"operationName\": \"consultaDeFiliais\",\n    \"extensions\": {}\n}\n\ntry {\n    const respostaDoServidor = await axios.post(url, queryDeConsultaDeFiliais)\n    \n    const conteudoDaResposta = respostaDoServidor.data.data.filiaises\n    \n    msg.payload = conteudoDaResposta\n\n} catch (e) {\n    node.warn('ERRO AO CONSULTAR FILIAIS')\n    node.warn(e)\n    msg.statusCode = 500\n    msg.payload = 'ERRO AO TENTAR CONSULTAR FILIAIS'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 180,
+        "wires": [
+            [
+                "93428520cccf0982"
+            ]
+        ]
+    },
+    {
+        "id": "92466433eae6fdcf",
+        "type": "function",
+        "z": "c5c72c685c34ec7d",
+        "name": "buscar listagem",
+        "func": "// @ts-ignore\nconst require = global.get('require')\nconst axios = require('axios')\nconst solicitacao = msg.payload\nconst url = 'http://localhost:8911/graphql'\n \nconst queryDeListagem = {\n    \"query\": \"query filiais {\\n  filiaises {\\n    id\\n    nome\\n    codigo\\n  }\\n}\",\n    \"operationName\": \"filiais\",\n    \"extensions\": {}\n}\n\ntry {\n    const resposta = await axios.post(url, queryDeListagem)\n    node.warn(resposta);\n    const listagem = resposta.data.data.filiaises\n    msg.payload = listagem\n} catch (e) {\n    node.warn('ERRO AO REALIZAR LISTAGEM DE FILIAIS')\n    node.warn(e)\n    msg.statusCode = 500\n    msg.payload = 'ERRO AO TENTAR ACESSAR LISTAGEM DE FILIAIS'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 300,
+        "wires": [
+            [
+                "5741a75e1ac8e819",
+                "3b08fed21625fa6e"
+            ]
+        ]
+    },
+    {
+        "id": "14f57e8914809407",
+        "type": "http in",
+        "z": "c5c72c685c34ec7d",
+        "name": "",
+        "url": "api/filiais/listagem",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 300,
+        "wires": [
+            [
+                "92466433eae6fdcf"
+            ]
+        ]
+    },
+    {
+        "id": "5741a75e1ac8e819",
+        "type": "http response",
+        "z": "c5c72c685c34ec7d",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3b08fed21625fa6e",
+        "type": "debug",
+        "z": "c5c72c685c34ec7d",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "5c6e1fc78189ac80",
+        "type": "inject",
+        "z": "c5c72c685c34ec7d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 360,
+        "wires": [
+            [
+                "92466433eae6fdcf"
+            ]
+        ]
+    },
+    {
+        "id": "0ac7ec080739738d",
+        "type": "http in",
+        "z": "d952e254adfa0eea",
+        "name": "",
+        "url": "/api/alunos",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "1b689c878d39a69f"
+            ]
+        ]
+    },
+    {
+        "id": "1b689c878d39a69f",
+        "type": "function",
+        "z": "d952e254adfa0eea",
+        "name": "function 22",
+        "func": "// @ts-ignore\nconst require = global.get('require')\nconst axios = require('axios') \nconst url = 'http://localhost:8911/graphql'\n\nconst query = {\n    \"query\": \"query Alunos {\\n  alunos {\\n    id\\n    nome\\n    TreinoPlaining {\\n      id\\n      exercicio_id\\n      Exercicio {\\n        id\\n      }\\n      bloco\\n      series\\n      repet_a\\n      repet_b\\n      repet_c\\n      repet_d\\n      repet_r\\n      implemento_a\\n      implemento_b\\n      implemento_c\\n      implemento_d\\n      implemento_r\\n      tempo_a\\n      tempo_b\\n      tempo_c\\n      tempo_d\\n      tempo_r\\n    }\\n  }\\n}\",\n    \"operationName\": \"Alunos\",\n    \"extensions\": {}\n}\n\ntry {\n    const respostaRedwood = await axios.post(url, query) \n    const alunos = respostaRedwood.data.data.alunos\n    msg.payload = alunos\n} catch (error) {\n    msg.statusCode = 400\n    msg.payload = 'Sua solicitação não é válida'\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 180,
+        "wires": [
+            [
+                "98eaca8b0672d72d"
+            ]
+        ]
+    },
+    {
+        "id": "98eaca8b0672d72d",
+        "type": "http response",
+        "z": "d952e254adfa0eea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "ac2ca6fa55106d12",
+        "type": "function",
+        "z": "578bfd59677fba36",
+        "name": "buscar listagem",
+        "func": "// @ts-ignore\nconst require = global.get('require')\nconst axios = require('axios')\nconst solicitacao = msg.payload\nconst url = 'http://localhost:8911/graphql'\n \nconst queryDeListagem = {\n    \"query\": \"query funcionarios {\\n  funcionarioses {\\n    id\\n    nome\\n    rg\\n  }\\n}\",\n    \"variables\": {},\n    \"operationName\": \"funcionarios\",\n    \"extensions\": {}\n}\n\ntry {\n    const resposta = await axios.post(url, queryDeListagem)\n    node.warn(resposta);\n    const listagem = resposta.data.data.funcionarioses\n    msg.payload = listagem\n} catch (e) {\n    node.warn('ERRO AO REALIZAR LISTAGEM DE FUNCIONÁRIOS')\n    node.warn(e)\n    msg.statusCode = 500\n    msg.payload = 'ERRO AO TENTAR ACESSAR LISTAGEM DE FUNCIONÁRIOS'\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 100,
+        "wires": [
+            [
+                "efc99c0f63efe169",
+                "52c1aff0141a06ff"
+            ]
+        ]
+    },
+    {
+        "id": "d840202b6c3084de",
+        "type": "http in",
+        "z": "578bfd59677fba36",
+        "name": "",
+        "url": "api/funcionarios/listagem",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "ac2ca6fa55106d12"
+            ]
+        ]
+    },
+    {
+        "id": "efc99c0f63efe169",
+        "type": "http response",
+        "z": "578bfd59677fba36",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "52c1aff0141a06ff",
+        "type": "debug",
+        "z": "578bfd59677fba36",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d7a2ae0f36c9cacb",
+        "type": "inject",
+        "z": "578bfd59677fba36",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 160,
+        "wires": [
+            [
+                "ac2ca6fa55106d12"
+            ]
+        ]
+    }
+]
